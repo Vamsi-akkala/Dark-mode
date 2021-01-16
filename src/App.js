@@ -1,23 +1,32 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
+import Brightness2Icon from '@material-ui/icons/Brightness2';
+import Switch from '@material-ui/core/Switch';
 
 function App() {
+  const [mode, setMode] = useState(false);
+
+  const handleMode = () => {
+    setMode(!mode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={!mode ? 'app' : 'appDark'}>
+      <div className="switchMode">
+        <div className="items">
+          <WbSunnyIcon
+            className={!mode && 'shiningSun'}
+          />
+          <Switch
+            color="primary"
+            onChange={handleMode}
+          />
+          <Brightness2Icon
+            className={mode && 'darkMoon'}
+          />
+        </div>
+      </div>
     </div>
   );
 }
